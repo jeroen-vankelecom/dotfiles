@@ -1,6 +1,3 @@
-*.LSOverride
-.bundle
-
 # Folder view configuration files
 .DS_Store
 Desktop.ini
@@ -23,3 +20,8 @@ Thumbs.db
 venv
 node_modules
 .sass-cache
+
+# Others
+*.LSOverride
+.bundle
+*.log*

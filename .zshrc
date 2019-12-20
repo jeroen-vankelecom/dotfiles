@@ -61,6 +61,11 @@ else
      start_agent;
 fi
 
+# Bash completion
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
 # Ask for confirmation when 'prod' is in a command string.
 #prod_command_trap () {
 #  if [[ $BASH_COMMAND == *prod* ]]
