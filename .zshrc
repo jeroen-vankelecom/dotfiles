@@ -5,6 +5,9 @@
 # @see .inputrc
 #
 
+# Manually set language environment.
+export LANG=en_US.UTF-8
+
 # Colors.
 unset LSCOLORS
 export CLICOLOR=1
