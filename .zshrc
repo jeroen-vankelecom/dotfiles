@@ -31,6 +31,12 @@ then
   source ~/.aliases
 fi
 
+# Include functions file (if present).
+if [ -f ~/.functions ]
+then
+  source ~/.functions
+fi
+
 # Completions.
 autoload -Uz compinit && compinit
 # Case insensitive.
@@ -41,6 +47,16 @@ export HOMEBREW_AUTO_UPDATE_SECS=604800
 
 # Python settings.
 export PYTHONPATH="/usr/local/lib/python2.7/site-packages"
+
+# Source SSH settings, if applicable
+if [ -f "${SSH_ENV}" ]; then
+     . "${SSH_ENV}" > /dev/null
+     ps ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+         start_agent;
+     }
+else
+     start_agent;
+fi
 
 # Ask for confirmation when 'prod' is in a command string.
 #prod_command_trap () {

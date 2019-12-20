@@ -1,0 +1,70 @@
+# Git upstream branch syncer.
+# Usage: gsync master (checks out master, pull upstream, push origin).
+function gsync() {
+ if [[ ! "$1" ]] ; then
+     echo "You must supply a branch."
+     return 0
+ fi
+
+ BRANCHES=$(git branch --list $1)
+ if [ ! "$BRANCHES" ] ; then
+    echo "Branch $1 does not exist."
+    return 0
+ fi
+
+ git checkout "$1" && \
+ git pull upstream "$1" && \
+ git push origin "$1"
+}
+
+# ssh port forwarding
+# Usage: jump user jumphost target
+# TODO: read forwarded ports from command line
+function jump {
+    user=$1		# User to connect
+    x=$2		# Factinst server or jumphost
+    y=$3		# IPMI address
+    z=127.0.0.1
+    sudo ssh -qx $user@$x -L $z:80:$y:80 -L $z:443:$y:443 -L $z:5900:$y:5900 -L $z:5901:$y:5901 -L $z:5120:$y:5120 -L $z:5123:$y:5123 -L $z:7578:$y:7578
+}
+
+# Delete a given line number in the known_hosts file.
+# Usage: knownrm LINENUMBER
+knownrm() {
+ re='^[0-9]+$'
+ if ! [[ $1 =~ $re ]] ; then
+   echo "error: line number missing" >&2;
+ else
+   sed -i '' "$1d" ~/.ssh/known_hosts
+ fi
+}
+
+# restore virtual environment - credits to Michael
+function riv {
+    rm -rf venv; virtualenv venv
+    venv/bin/pip install pip --upgrade
+    REQ_FILE=requirements.txt
+    if [ -f sessiond-requirements.txt ]; then
+        REQ_FILE=sessiond-requirements.txt
+    elif [ -f requirements-dev.txt ]; then
+        REQ_FILE=requirements-dev.txt
+    fi
+    if [ -n "${REQUIREMENTS}" ]; then
+        REQ_FILE="${REQUIREMENTS}"
+    fi
+    echo "using requirements ${REQ_FILE}"
+    env CRYPTOGRAPHY_OSX_NO_LINK_FLAGS=1 LDFLAGS="$(brew --prefix openssl)/lib/libssl.a $(brew --prefix openssl)/lib/libcrypto.a" CFLAGS="-I$(brew --prefix openssl)/include" venv/bin/pip install $@ -r ${REQ_FILE}
+    source venv/bin/activate
+    echo 'venv reinit done'
+}
+
+SSH_ENV="$HOME/.ssh/environment"
+function start_agent {
+     echo "Initialising new SSH agent..."
+     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+     echo "Succeeded - running with settings from ${SSH_ENV}"
+     chmod 600 "${SSH_ENV}"
+     . "${SSH_ENV}" > /dev/null
+     /usr/bin/ssh-add;
+}
+
