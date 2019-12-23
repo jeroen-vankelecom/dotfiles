@@ -11,28 +11,9 @@ export ZSH="/Users/jeroen/.oh-my-zsh"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # ----- options -----
-unsetopt NO_BEEP
-unsetopt NO_MATCH
-setopt AUTO_CD
-setopt BEEP
-setopt NOMATCH
-setopt NOTIFY
-setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_FIND_NO_DUPS
-setopt HIST_SAVE_NO_DUPS
-setopt HIST_REDUCE_BLANKS
-setopt HIST_VERIFY
-setopt HIST_BEEP
-setopt INTERACTIVE_COMMENTS
-setopt MAGIC_EQUAL_SUBST
-
 HISTFILE="$HOME/.zsh_history"
 HIST_STAMPS=mm/dd/yyyy
-DISABLE_UPDATE_PROMPT=true
+#DISABLE_UPDATE_PROMPT=true
 HISTSIZE=5000
 SAVEHIST=5000
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#ccc'
@@ -69,8 +50,8 @@ POWERLEVEL9K_VCS_UNSTAGED_ICON=±
 POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON=↓
 POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON=↑
 POWERLEVEL9K_VCS_COMMIT_ICON=' '
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{blue}╭─%F{red}'
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%F{blue}╰%f '
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{red}'
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%f'
 POWERLEVEL9K_CUSTOM_OS_ICON='echo   $(whoami) '
 POWERLEVEL9K_CUSTOM_OS_ICON_BACKGROUND=red
 POWERLEVEL9K_CUSTOM_OS_ICON_FOREGROUND=white
@@ -135,7 +116,15 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status background_job
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+    ansible
+    aws
+    git
+    kubectl
+    minikube
+    terraform
+    tmux
+    )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -145,6 +134,8 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
