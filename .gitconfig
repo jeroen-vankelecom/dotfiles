@@ -1,6 +1,6 @@
 [user]
   name = Jeroen Vankelecom
-  email = jeroen.vankelecom@gmail.com
+  email = jeroen.vankelecom@unifiedpost.com
 [core]
   editor = vi
   excludesfile = ~/.gitignore
@@ -32,3 +32,5 @@
   st = status
   unstage = reset HEAD
   visual = !gitk
+[pager]
+	branch = false

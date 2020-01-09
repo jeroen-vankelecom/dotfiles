@@ -56,7 +56,7 @@ POWERLEVEL9K_CUSTOM_OS_ICON='echo   $(whoami) '
 POWERLEVEL9K_CUSTOM_OS_ICON_BACKGROUND=red
 POWERLEVEL9K_CUSTOM_OS_ICON_FOREGROUND=white
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_os_icon ssh root_indicator dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status background_jobs time ram)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status virtualenv time ram)
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -136,6 +136,9 @@ source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+# Adding some hapiness to the workplace
+export ANSIBLE_COW_SELECTION=tux
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then

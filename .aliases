@@ -10,6 +10,8 @@ alias lsd='ls -l | grep "^d"'
 # goto shortcuts
 alias goto_home='cd ~/'
 alias goto_src='cd ~/Source/'
+alias goto_cfg='cd ~/Configuration'
+
 
 # python
 alias viva='source venv/bin/activate'
