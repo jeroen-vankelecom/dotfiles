@@ -21,11 +21,11 @@ function gsync() {
 # Usage: jump user jumphost target
 # TODO: read forwarded ports from command line
 function jump {
-    user=$1		# User to connect
-    x=$2		# Factinst server or jumphost
-    y=$3		# IPMI address
+    user=$1	    	# User to connect
+    jumphost=$2		# Factinst server or jumphost
+    target=$3		# IPMI address
     z=127.0.0.1
-    sudo ssh -qx $user@$x -L $z:80:$y:80 -L $z:443:$y:443 -L $z:5900:$y:5900 -L $z:5901:$y:5901 -L $z:5120:$y:5120 -L $z:5123:$y:5123 -L $z:7578:$y:7578
+    ssh -f $user@jumphost -L localhost:9999:$target:443
 }
 
 # Delete a given line number in the known_hosts file.

@@ -1,6 +1,21 @@
 # See http://www.shellperson.net/using-sudo-with-an-alias/
 alias sudo='command sudo '
 
+# colors
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias diff='diff --color=auto'
+
 # navigation
 alias ls='ls -G'
 alias ll='ls -lh'
@@ -12,7 +27,6 @@ alias goto_home='cd ~/'
 alias goto_src='cd ~/Source/'
 alias goto_cfg='cd ~/Configuration'
 
-
 # python
 alias viva='source venv/bin/activate'
 alias diva='deactivate'
@@ -20,6 +34,7 @@ alias diva='deactivate'
 # custom
 alias chrome='open -a "Google Chrome"'
 alias tf='/usr/local/bin/terraform'
+alias tunnel_awx_ereg='ssh -f -N -M -S /tmp/session-awx-ecc -L 9999:10.14.0.6:443 -Nf jeroen.vankelecom@10.7.0.11'
 
 # Forces a shutdown.
 alias poweroff='sudo /sbin/shutdown -h now'

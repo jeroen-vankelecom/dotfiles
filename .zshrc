@@ -8,7 +8,7 @@ export ZSH="/Users/jeroen/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # ----- options -----
 HISTFILE="$HOME/.zsh_history"
@@ -16,14 +16,7 @@ HIST_STAMPS=mm/dd/yyyy
 #DISABLE_UPDATE_PROMPT=true
 HISTSIZE=5000
 SAVEHIST=5000
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#ccc'
-ZLE_RPROMPT_INDENT=0
 
-# ----- promt -----
-PS1="%F{cyan} %~ >%F{blue}> %F{white}"
-
-# -------------------------------- POWERLEVEL ---------------------------------
-# Enable Hack Nerd font in iterm2 as non-ASCII font in Preferences > Profiles > Text
 POWERLEVEL9K_MODE=nerdfont-complete
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
@@ -50,13 +43,24 @@ POWERLEVEL9K_VCS_UNSTAGED_ICON=±
 POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON=↓
 POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON=↑
 POWERLEVEL9K_VCS_COMMIT_ICON=' '
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{red}'
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%f'
-POWERLEVEL9K_CUSTOM_OS_ICON='echo   $(whoami) '
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{blue}╭─%F{red}'
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%F{blue}╰> $ %f '
+POWERLEVEL9K_CUSTOM_OS_ICON='echo   $(whoami) '
 POWERLEVEL9K_CUSTOM_OS_ICON_BACKGROUND=red
 POWERLEVEL9K_CUSTOM_OS_ICON_FOREGROUND=white
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_os_icon ssh root_indicator dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status virtualenv time ram)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status virtualenv time)
+
+# PS1="\n \[\033[0;34m\]╭─────\[\033[0;31m\]\[\033[0;37m\]\[\033[41m\] $OS_ICON \u \[\033[0m\]\[\033[0;31m\]\[\033[0;34m\]─────\[\033[0;32m\]\[\033[0;30m\]\[\033[42m\] \w \[\033[0m\]\[\033[0;32m\] \n \[\033[0;34m\]╰ \[\033[1;36m\]\$ \[\033[0m\]"
+
+ZLE_RPROMPT_INDENT=0
+
+# ---- load powerlevel ---
+## For POWERLEVEL10K
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+## For POWERLEVEL9K
+#source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -124,11 +128,15 @@ plugins=(
     minikube
     terraform
     tmux
+    zsh-autosuggestions
+    zsh-aws-vault
+    zsh-syntax-highlighting
     )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#ccc'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
