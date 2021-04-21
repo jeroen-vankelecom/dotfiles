@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH:$(go env GOPATH)/bin:/opt/apache-maven-3.6.3/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/jeroen/.oh-my-zsh"
@@ -128,7 +128,6 @@ plugins=(
     minikube
     terraform
     tmux
-    zsh-autosuggestions
     zsh-aws-vault
     zsh-syntax-highlighting
     )
@@ -166,3 +165,10 @@ export ANSIBLE_COW_SELECTION=tux
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+. "/Users/jeroen/.acme.sh/acme.sh.env"
+
+eval "$(pyenv init -)"

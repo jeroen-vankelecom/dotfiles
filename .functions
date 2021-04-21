@@ -68,3 +68,6 @@ function start_agent {
      /usr/bin/ssh-add;
 }
 
+awsvl () {
+    aws-vault --debug login $1 --stdout | xargs -t nohup /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome %U --no-first-run --new-window --disk-cache-dir=$(mktemp -d /tmp/chrome.XXXXXX) --user-data-dir=$(mktemp -d /tmp/chrome.XXXXXX) > /dev/null 2>&1 &
+}

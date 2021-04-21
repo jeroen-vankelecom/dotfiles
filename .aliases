@@ -14,7 +14,6 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias diff='diff --color=auto'
 
 # navigation
 alias ls='ls -G'
@@ -30,6 +29,7 @@ alias goto_cfg='cd ~/Configuration'
 # python
 alias viva='source venv/bin/activate'
 alias diva='deactivate'
+alias pr='pipenv run'
 
 # custom
 alias chrome='open -a "Google Chrome"'
