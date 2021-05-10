@@ -1,8 +1,8 @@
 [user]
   name = Jeroen Vankelecom
-  email = jeroen.vankelecom@unifiedpost.com
+  email = jeroen.vankelecom@robovision.eu
 [core]
-  editor = vi
+  editor = vim
   excludesfile = ~/.gitignore
   autocrlf = input
 [color]

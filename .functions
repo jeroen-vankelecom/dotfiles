@@ -17,17 +17,6 @@ function gsync() {
  git push origin "$1"
 }
 
-# ssh port forwarding
-# Usage: jump user jumphost target
-# TODO: read forwarded ports from command line
-function jump {
-    user=$1	    	# User to connect
-    jumphost=$2		# Factinst server or jumphost
-    target=$3		# IPMI address
-    z=127.0.0.1
-    ssh -f $user@jumphost -L localhost:9999:$target:443
-}
-
 # Delete a given line number in the known_hosts file.
 # Usage: knownrm LINENUMBER
 knownrm() {
@@ -37,25 +26,6 @@ knownrm() {
  else
    sed -i '' "$1d" ~/.ssh/known_hosts
  fi
-}
-
-# restore virtual environment - credits to Michael
-function riv {
-    rm -rf venv; virtualenv venv
-    venv/bin/pip install pip --upgrade
-    REQ_FILE=requirements.txt
-    if [ -f sessiond-requirements.txt ]; then
-        REQ_FILE=sessiond-requirements.txt
-    elif [ -f requirements-dev.txt ]; then
-        REQ_FILE=requirements-dev.txt
-    fi
-    if [ -n "${REQUIREMENTS}" ]; then
-        REQ_FILE="${REQUIREMENTS}"
-    fi
-    echo "using requirements ${REQ_FILE}"
-    env CRYPTOGRAPHY_OSX_NO_LINK_FLAGS=1 LDFLAGS="$(brew --prefix openssl)/lib/libssl.a $(brew --prefix openssl)/lib/libcrypto.a" CFLAGS="-I$(brew --prefix openssl)/include" venv/bin/pip install $@ -r ${REQ_FILE}
-    source venv/bin/activate
-    echo 'venv reinit done'
 }
 
 SSH_ENV="$HOME/.ssh/environment"
